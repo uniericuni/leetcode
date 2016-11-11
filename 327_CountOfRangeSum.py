@@ -48,8 +48,5 @@ class Solution(object):
                 i+=1
         if i>m: rtn.extend(csum[j:hi+1])
         else:  rtn.extend(csum[i:m+1])
-        tmp = []
-        tmp.extend(csum[:lo])
-        tmp.extend(rtn)
-        tmp.extend(csum[hi+1:])
-        csum[:] = tmp
+        for i in range(lo, hi+1):
+            csum[i] = rtn[i-lo]
