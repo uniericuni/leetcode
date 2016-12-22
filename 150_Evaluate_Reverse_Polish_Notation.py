@@ -15,14 +15,14 @@ class Solution(object):
         :rtype: int
         """
         
-        tokenQueue = []
+        tokenStack = []
         for token in tokens:
-            tokenQueue.append(token)
+            tokenStack.append(token)
             if token=="+" or token=="-" or token=="*" or token=="/":
                 rtn=self.process(tokenQueue[-3],tokenQueue[-2],tokenQueue[-1])
-                tokenQueue.pop()
-                tokenQueue.pop()
-                tokenQueue.pop()
-                tokenQueue.append(rtn)
+                tokenStack.pop()
+                tokenStack.pop()
+                tokenStack.pop()
+                tokenStack.append(rtn)
                 
-        return int(tokenQueue[0])
+        return int(tokenStack[0])

@@ -6,17 +6,17 @@ class Solution(object):
         """
         
         maxLength=0
-        cQueue=[]
+        cStack=[]
         for i in range(0,len(s)):
             if s[i]=='(':
-                cQueue.append((i,s[i]))
+                cStack.append((i,s[i]))
             else:
-                if len(cQueue)==0 or cQueue[-1][1]==')':
-                    cQueue.append((i,s[i]))
+                if len(cStack)==0 or cStack[-1][1]==')':
+                    cStack.append((i,s[i]))
                 else:
-                    cQueue.pop()
-                    if len(cQueue)==0:
+                    cStack.pop()
+                    if len(cStack)==0:
                         maxLength=max(maxLength,i+1)
                     else:
-                        maxLength=max(maxLength,i-cQueue[-1][0])
+                        maxLength=max(maxLength,i-cStack[-1][0])
         return maxLength
