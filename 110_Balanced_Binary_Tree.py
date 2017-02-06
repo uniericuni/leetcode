@@ -6,20 +6,25 @@
 #         self.right = None
 
 class Solution(object):
-    def balance(self, root):
-        if root==None:
-            return True, 0
-        lRtn,lHeight=self.balance(root.left)
-        rRtn,rHeight=self.balance(root.right)
-        if (not lRtn) or (not rRtn):
-            return False, 0
+    def isValid(self, node):
+        if node==None:
+            return 0
+        rtn1 = self.isValid(node.left)
+        rtn2 = self.isValid(node.right)
+        if rtn1==-1 or rtn2==-1 or abs(rtn1-rtn2)>1:
+            return -1
         else:
-            return abs(lHeight-rHeight)<=1, max(lHeight, rHeight)+1
-        
+            return max(rtn1,rtn2)+1
+    
     def isBalanced(self, root):
         """
         :type root: TreeNode
         :rtype: bool
         """
-        rtn,_=self.balance(root)
-        return rtn
+        
+        rtn = self.isValid(root)
+        if rtn==-1:
+            return False
+        return True
+        
+        
